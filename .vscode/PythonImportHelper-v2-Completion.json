@@ -1,0 +1,174 @@
+[
+    {
+        "label": "datetime",
+        "kind": 6,
+        "isExtraImport": true,
+        "importPath": "datetime",
+        "description": "datetime",
+        "detail": "datetime",
+        "documentation": {}
+    },
+    {
+        "label": "json",
+        "kind": 6,
+        "isExtraImport": true,
+        "importPath": "json",
+        "description": "json",
+        "detail": "json",
+        "documentation": {}
+    },
+    {
+        "label": "*",
+        "importPath": "tkinter",
+        "description": "tkinter",
+        "isExtraImport": true,
+        "detail": "tkinter",
+        "documentation": {}
+    },
+    {
+        "label": "*",
+        "importPath": "tkinter",
+        "description": "tkinter",
+        "isExtraImport": true,
+        "detail": "tkinter",
+        "documentation": {}
+    },
+    {
+        "label": "ttk",
+        "importPath": "tkinter",
+        "description": "tkinter",
+        "isExtraImport": true,
+        "detail": "tkinter",
+        "documentation": {}
+    },
+    {
+        "label": "*",
+        "importPath": "tkinter.messagebox",
+        "description": "tkinter.messagebox",
+        "isExtraImport": true,
+        "detail": "tkinter.messagebox",
+        "documentation": {}
+    },
+    {
+        "label": "orm",
+        "kind": 6,
+        "isExtraImport": true,
+        "importPath": "orm",
+        "description": "orm",
+        "detail": "orm",
+        "documentation": {}
+    },
+    {
+        "label": "Productos",
+        "importPath": "Tablas.Productos",
+        "description": "Tablas.Productos",
+        "isExtraImport": true,
+        "detail": "Tablas.Productos",
+        "documentation": {}
+    },
+    {
+        "label": "os",
+        "kind": 6,
+        "isExtraImport": true,
+        "importPath": "os",
+        "description": "os",
+        "detail": "os",
+        "documentation": {}
+    },
+    {
+        "label": "*",
+        "importPath": "config",
+        "description": "config",
+        "isExtraImport": true,
+        "detail": "config",
+        "documentation": {}
+    },
+    {
+        "label": "*",
+        "importPath": "funciones",
+        "description": "funciones",
+        "isExtraImport": true,
+        "detail": "funciones",
+        "documentation": {}
+    },
+    {
+        "label": "InterfazApp",
+        "importPath": "interfaz",
+        "description": "interfaz",
+        "isExtraImport": true,
+        "detail": "interfaz",
+        "documentation": {}
+    },
+    {
+        "label": "centrar_ventana",
+        "kind": 2,
+        "importPath": "config",
+        "description": "config",
+        "peekOfCode": "def centrar_ventana(ventana,ancho_ventana,largo_ventana):\n    pantalla_ancho=ventana.winfo_screenwidth()\n    pantalla_largo=ventana.winfo_screenheight()\n    x=int((pantalla_ancho/2)-(ancho_ventana/2))\n    y=int((pantalla_largo/2)-(largo_ventana/2))\n    return ventana.geometry(f\"{ancho_ventana}x{largo_ventana}+{x}+{y}\")",
+        "detail": "config",
+        "documentation": {}
+    },
+    {
+        "label": "f_limpiar",
+        "kind": 2,
+        "importPath": "funciones",
+        "description": "funciones",
+        "peekOfCode": "def f_limpiar(ventana):\n    if not ventana:\n        ventana = Tk()  # Usa la ventana actual si no se proporciona ninguna ventana\n    ventana.nombre_texto.delete(0, END)\n    ventana.cantidad_texto.delete(0, END)\n    ventana.precio_texto.delete(0, END)\n    ventana.nombre_texto.focus()\ndef f_nuevo(ventana):\n    nombre=ventana.nombre_texto.get()\n    cantidad=ventana.cantidad_texto.get()",
+        "detail": "funciones",
+        "documentation": {}
+    },
+    {
+        "label": "f_nuevo",
+        "kind": 2,
+        "importPath": "funciones",
+        "description": "funciones",
+        "peekOfCode": "def f_nuevo(ventana):\n    nombre=ventana.nombre_texto.get()\n    cantidad=ventana.cantidad_texto.get()\n    precio=ventana.precio_texto.get()\n    ventana.tabla_datos.insert(\"\",END,text=nombre,values=(cantidad,precio))\n    date={\n        \"Nombre\":nombre,\n        \"Cantidad\":cantidad,\n        \"Precio\":precio\n    }",
+        "detail": "funciones",
+        "documentation": {}
+    },
+    {
+        "label": "f_eliminar",
+        "kind": 2,
+        "importPath": "funciones",
+        "description": "funciones",
+        "peekOfCode": "def f_eliminar(ventana):\n    item_seleccionado = ventana.tabla_datos.selection()\n    if item_seleccionado:\n        dato = ventana.tabla_datos.item(item_seleccionado)['text']\n        # Eliminar de la base de datos\n        if db.eliminar('Productos', where=f\"Nombre='{dato}'\"):\n            showinfo(title=\"ELIMINAR\", message=\"Se eliminó con éxito el producto de la base de datos\")\n        else:\n            showinfo(title=\"ERROR\", message=\"Se eliminó con éxito el producto de la base de datos\")\n        # Eliminar de la tabla",
+        "detail": "funciones",
+        "documentation": {}
+    },
+    {
+        "label": "f_actualizar",
+        "kind": 2,
+        "importPath": "funciones",
+        "description": "funciones",
+        "peekOfCode": "def f_actualizar(ventana):\n    if not ventana.nombre_texto.get():\n        showerror(title=\"SIN DATOS\", message=\"No hay nada para actualizar\")\n    else:\n        nombre = ventana.nombre_texto.get()\n        cantidad = ventana.cantidad_texto.get()\n        precio = ventana.precio_texto.get()\n        elem_actualizar = ventana.tabla_datos.selection()\n        mensaje = askyesno(title=\"Actualizar\", message=\"¿Estás seguro que deseas actualizar?\")\n        if mensaje:",
+        "detail": "funciones",
+        "documentation": {}
+    },
+    {
+        "label": "f_mostrar_tabla",
+        "kind": 2,
+        "importPath": "funciones",
+        "description": "funciones",
+        "peekOfCode": "def f_mostrar_tabla(ventana):\n    # Limpiar la tabla\n    for item in ventana.tabla_datos.get_children():\n        ventana.tabla_datos.delete(item)\n    # Obtener todos los registros de la base de datos\n    registros = json.loads(db.mostrar('Productos'))\n    # Insertar registros en la tabla\n    for registro in registros:\n        nombre = registro[\"Nombre\"]\n        cantidad = registro[\"Cantidad\"]",
+        "detail": "funciones",
+        "documentation": {}
+    },
+    {
+        "label": "f_dobleClick",
+        "kind": 2,
+        "importPath": "funciones",
+        "description": "funciones",
+        "peekOfCode": "def f_dobleClick(ventana,event):\n    elem_actualizar=ventana.tabla_datos.selection()\n    captura_datos=ventana.tabla_datos.item(elem_actualizar)\n    mensaje=askyesno(title=\"ACTUALIZAR\",message=\"Desea actualizar los datos\")\n    if mensaje == True:\n        nombre=captura_datos[\"text\"]\n        cantidad=captura_datos[\"values\"][0]\n        precio=captura_datos[\"values\"][1]\n        ventana.nombre_texto.insert(0,nombre)\n        ventana.cantidad_texto.insert(0,cantidad)",
+        "detail": "funciones",
+        "documentation": {}
+    },
+    {
+        "label": "InterfazApp",
+        "kind": 6,
+        "importPath": "interfaz",
+        "description": "interfaz",
+        "peekOfCode": "class InterfazApp(Tk):\n    def __init__(self):\n        super().__init__()\n        self.configurar_ventana()\n        self.construir_widget()\n    #metodo propio vamos a darle las configuraciones basicas para mostrar nuestra ventana\n    def configurar_ventana(self):\n        self.title(f\"{TITULO_APP} {HORA_ACTUAL}\")\n        self.configure(bg=COLOR_FONDO_PRIMARIO)\n        self.resizable(0,0)",
+        "detail": "interfaz",
+        "documentation": {}
+    }
+]
